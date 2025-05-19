@@ -6,7 +6,7 @@ stages:
   - deployment:  DeployWeb
     displayName: deploy Web App
     pool:
-      vmImage: 'Ubuntu-latest'
+      vmImage: 'windows-latest'
     # creates an environment if it doesn't exist
     environment: 
       name: 'dev'
@@ -16,3 +16,6 @@ stages:
           steps:
           - checkout: self
             persistCredentials: true
+          - task: TerraformInstaller@1
+            inputs:
+              terraformVersion: '1.9.6'
