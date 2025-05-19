@@ -1,10 +1,31 @@
 trigger: none
 
 stages:
-- stage: deploy
+- stage: build
   jobs:
-  - deployment:  DeployWeb
-    displayName: deploy Web App
+  - deployment:  build
+    displayName: build
+    pool:
+      vmImage: 'windows-latest'
+    # creates an environment if it doesn't exist
+    environment: 
+      name: 'dev'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - checkout: self
+            persistCredentials: true
+          - task: TerraformInstaller@1
+            inputs:
+              terraformVersion: '1.9.6'
+
+- stage: deploy
+  dependsOn: build
+  condition: succeeded('build')
+  jobs:
+  - deployment: deploy
+    displayName: deploy
     pool:
       vmImage: 'windows-latest'
     # creates an environment if it doesn't exist
