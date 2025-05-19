@@ -1,8 +1,5 @@
 trigger: none
 
-pool:
-  vmImage: 'windows-latest'
-
 stages:
 - stage: deploy
   jobs:
