@@ -12,4 +12,6 @@ stages:
           vmImage: 'windows-latest'
         steps:
           - checkout: self
-          
+          - task: TerraformInstaller@1
+            inputs:
+              terraformVersion: '1.9.6'
