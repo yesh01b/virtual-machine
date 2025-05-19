@@ -16,4 +16,6 @@ stages:
           steps:
           - checkout: self
             persistCredentials: true
-          
+          - task: TerraformInstaller@1
+            inputs:
+              terraformVersion: '1.9.6'
