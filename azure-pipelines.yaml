@@ -1,0 +1,15 @@
+trigger: none
+pool:
+  vmImage: 'windows-latest'
+
+stages:
+  - stage: Build
+    displayName: 'Build and Test'
+    jobs:
+      - job: Build
+        displayName: 'Build and Test'
+        pool:
+          vmImage: 'windows-latest'
+        steps:
+          - checkout: self
+          
