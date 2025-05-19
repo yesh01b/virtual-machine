@@ -30,7 +30,7 @@ stages:
       vmImage: 'windows-latest'
     # creates an environment if it doesn't exist
     environment: 
-      name: 'dev'
+      name: 'stage'
     strategy:
       runOnce:
         deploy:
