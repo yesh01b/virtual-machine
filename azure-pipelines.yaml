@@ -1,15 +1,22 @@
 trigger: none
+
 pool:
   vmImage: 'windows-latest'
 
 stages:
-  - stage: Build
-    displayName: 'Build and Test'
-    jobs:
-      - job: Build
-        displayName: 'Build and Test'
-        pool:
-          vmImage: 'windows-latest'
-        steps:
+- stage: deploy
+  jobs:
+  - deployment:  DeployWeb
+    displayName: deploy Web App
+    pool:
+      vmImage: 'Ubuntu-latest'
+    # creates an environment if it doesn't exist
+    environment: 
+      name: 'dev'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
           - checkout: self
+            persistCredentials: true
           
